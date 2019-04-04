@@ -14,41 +14,41 @@ using namespace std;
 
 
 int main(){
-    int t, s_x, s_y, e_x, e_y;
+    long long int t, s_x, s_y, e_x, e_y;
     string direns;
-    map< char, int > count{};
+    map< char, long long int > count{};
     cin >> t >> s_x >> s_y >> e_x >> e_y;
     cin >> direns;
 
     for(auto chars: direns)
         count[chars] += 1;
 
-    int move_x, move_y;
+    long long int move_x, move_y;
 
     move_x = e_x - s_x;
     move_y = e_y - s_y;
 
     if((move_x < 0 and count['W'] < -move_x) or (move_x > 0 and count['E'] < move_x)){
-        cout << - 1<< endl;
+        cout << - 1 << endl;
         return 0;
     }
 
-    if((move_y < 0 and count['S'] < -move_y) or (move_y > 0 and count['N'] < move_x)){
+    if((move_y < 0 and count['S'] < -move_y) or (move_y > 0 and count['N'] < move_y)){
         cout << - 1<< endl;
         return 0;
     }
 
     char x = (move_x < 0 ? 'W' : 'E');
     char y = (move_y < 0 ? 'S' : 'N');
-    int x_c{};
-    int y_c{};
+    long long int x_c{};
+    long long int y_c{};
 
     for(int i{0}; i < t; ++i){
         if(direns[i] == x)
             ++x_c;
         if(direns[i] == y)
             ++y_c;
-        if(x_c == abs(move_x) and y_c == abs(move_y)){
+        if(x_c >= abs(move_x) and y_c >= abs(move_y)){
             cout << i + 1 << endl;
             return 0;
         }
