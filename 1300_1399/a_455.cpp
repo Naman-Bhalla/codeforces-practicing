@@ -11,7 +11,7 @@
 
 using namespace std;
 int counts[100005];
-int dp[100005];
+long long int dp[100005];
 int main(){
     int n, now, maxm{};
     memset(counts, 0, sizeof counts);
@@ -24,8 +24,8 @@ int main(){
         maxm = max(maxm, now);
     }
 
-    dp[1] = counts[1]; // We can remove each 1 sepaprately. It is the only number
-    for(int i{2}; i <= maxm; ++i){
+    dp[1] = counts[1]; // We can remove each 1 separately. It is the only number
+    for(long long int i{2}; i <= maxm; ++i){
         dp[i] = max(dp[i - 1], dp[i - 2] + i * counts[i]);
     }
 
